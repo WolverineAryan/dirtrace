@@ -578,16 +578,18 @@ app.get('/api/platform-stats', (req, res) => {
   });
 });
 
-// Serve built client frontend
-const clientDistPath = require('path').join(__dirname, '../client/dist');
-if (require('fs').existsSync(clientDistPath)) {
-  app.use(express.static(clientDistPath));
-  app.use((req, res, next) => {
-    if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
-      return next();
-    }
-    res.sendFile(require('path').join(clientDistPath, 'index.html'));
-  });
+// Serve built client frontend when running standalone (not in Vercel serverless)
+if (!process.env.VERCEL) {
+  const clientDistPath = require('path').join(__dirname, '../client/dist');
+  if (require('fs').existsSync(clientDistPath)) {
+    app.use(express.static(clientDistPath));
+    app.use((req, res, next) => {
+      if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
+        return next();
+      }
+      res.sendFile(require('path').join(clientDistPath, 'index.html'));
+    });
+  }
 }
 
 if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
