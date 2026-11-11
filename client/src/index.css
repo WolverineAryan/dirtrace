@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #0B0C10;
+    --surface-dark: #14161D;
+    --surface-card: #1A1D26;
+    --surface-border: #282B36;
+    --orange-primary: #FF5500;
+    --orange-hover: #E04B00;
+    --text-white: #FFFFFF;
+    --text-muted: #9E9EA7;
+  }
+
+  body {
+    background-color: #0B0C10;
+    color: #FFFFFF;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom motorsport glow & scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0C10;
+}
+::-webkit-scrollbar-thumb {
+  background: #282B36;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF5500;
+}
+
+.throttle-glow {
+  box-shadow: 0 0 25px rgba(255, 85, 0, 0.35);
+}
+
+.throttle-border-glow {
+  border-color: #FF5500;
+  box-shadow: 0 0 15px rgba(255, 85, 0, 0.2);
+}
